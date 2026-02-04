@@ -1,0 +1,312 @@
+{
+    "setup_data": {
+        "initialBooks": [
+            {
+                "available_copies": 9,
+                "genre": "History",
+                "id": 388,
+                "title": "The Great Adventure 1766406798846",
+                "year_published": 2024,
+                "author": "Carol Davis"
+            },
+            {
+                "genre": "Fantasy",
+                "id": 389,
+                "title": "Mystery Novel 1766406798944",
+                "year_published": 2024,
+                "author": "Carol Davis",
+                "available_copies": 8
+            },
+            {
+                "id": 390,
+                "title": "Fantasy Quest 1766406798953",
+                "year_published": 2024,
+                "author": "John Doe",
+                "available_copies": 8,
+                "genre": "Fantasy"
+            },
+            {
+                "title": "Mystery Novel 1766406798963",
+                "year_published": 2021,
+                "author": "Bob Wilson",
+                "available_copies": 6,
+                "genre": "Fiction",
+                "id": 391
+            },
+            {
+                "genre": "Mystery",
+                "id": 392,
+                "title": "Mystery Novel 1766406798974",
+                "year_published": 2020,
+                "author": "Alice Johnson",
+                "available_copies": 3
+            }
+        ]
+    },
+    "root_group": {
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "POST /books status is 201": {
+                    "name": "POST /books status is 201",
+                    "path": "::POST /books status is 201",
+                    "id": "8ce886a17cb78baf352931857c49df07",
+                    "passes": 388,
+                    "fails": 0
+                },
+                "POST /books returns created book": {
+                    "id": "0f17c3761621de5ee2f8ab7289defff1",
+                    "passes": 388,
+                    "fails": 0,
+                    "name": "POST /books returns created book",
+                    "path": "::POST /books returns created book"
+                },
+                "POST /books response time < 500ms": {
+                    "name": "POST /books response time < 500ms",
+                    "path": "::POST /books response time < 500ms",
+                    "id": "1cd74a88febe5ad1d2e143dd042adeb5",
+                    "passes": 388,
+                    "fails": 0
+                },
+                "GET /books status is 200": {
+                    "name": "GET /books status is 200",
+                    "path": "::GET /books status is 200",
+                    "id": "9785b733707b6abe5a917778f3f77dec",
+                    "passes": 1636,
+                    "fails": 0
+                },
+                "GET /books has books array": {
+                    "id": "be0d8f877791976f7a6630b59c20e064",
+                    "passes": 1636,
+                    "fails": 0,
+                    "name": "GET /books has books array",
+                    "path": "::GET /books has books array"
+                },
+                "GET /books response time < 300ms": {
+                    "fails": 0,
+                    "name": "GET /books response time < 300ms",
+                    "path": "::GET /books response time < 300ms",
+                    "id": "65c5ead8c7eb669c9ad91cc21658418b",
+                    "passes": 1636
+                },
+                "GET /books/search/:query status is 200": {
+                    "id": "500dcd68f666b92c8258bd5a0aedf869",
+                    "passes": 616,
+                    "fails": 0,
+                    "name": "GET /books/search/:query status is 200",
+                    "path": "::GET /books/search/:query status is 200"
+                },
+                "GET /books/search/:query has results": {
+                    "passes": 616,
+                    "fails": 0,
+                    "name": "GET /books/search/:query has results",
+                    "path": "::GET /books/search/:query has results",
+                    "id": "d8a2c4f32c17b0890d34b828023e98f6"
+                },
+                "GET /books/:id status is 200": {
+                    "path": "::GET /books/:id status is 200",
+                    "id": "6d327f8586023f1a821dae86344666ad",
+                    "passes": 821,
+                    "fails": 0,
+                    "name": "GET /books/:id status is 200"
+                },
+                "GET /books/:id returns book": {
+                    "path": "::GET /books/:id returns book",
+                    "id": "de655ae3cb7645548259b4ac067c322e",
+                    "passes": 821,
+                    "fails": 0,
+                    "name": "GET /books/:id returns book"
+                },
+                "PUT /books/:id status is 200": {
+                    "path": "::PUT /books/:id status is 200",
+                    "id": "f26b555bf85b93617b35556a5fa4c9ed",
+                    "passes": 399,
+                    "fails": 0,
+                    "name": "PUT /books/:id status is 200"
+                },
+                "PUT /books/:id returns updated book": {
+                    "name": "PUT /books/:id returns updated book",
+                    "path": "::PUT /books/:id returns updated book",
+                    "id": "193e27634962db5292fa24abd22c23a7",
+                    "passes": 399,
+                    "fails": 0
+                },
+                "DELETE /books/:id status is 200": {
+                    "path": "::DELETE /books/:id status is 200",
+                    "id": "ae4e8b0978261c1315a36e6927fafa02",
+                    "passes": 195,
+                    "fails": 0,
+                    "name": "DELETE /books/:id status is 200"
+                },
+                "DELETE /books/:id confirms deletion": {
+                    "passes": 195,
+                    "fails": 0,
+                    "name": "DELETE /books/:id confirms deletion",
+                    "path": "::DELETE /books/:id confirms deletion",
+                    "id": "587d9b8e60ab5de96d93d9ca31842b79"
+                }
+            },
+        "name": "",
+        "path": ""
+    },
+    "metrics": {
+        "book_update_duration": {
+            "min": 4.283958,
+            "med": 59.519109,
+            "max": 303.866923,
+            "p(90)": 86.3440738,
+            "p(95)": 87.7044184,
+            "avg": 49.69607049624055
+        },
+        "total_requests": {
+            "rate": 12.234985442354233,
+            "count": 4055
+        },
+        "vus": {
+            "value": 1,
+            "min": 1,
+            "max": 50
+        },
+        "book_delete_duration": {
+            "avg": 5.606378651282054,
+            "min": 3.186305,
+            "med": 4.507057,
+            "max": 42.075931,
+            "p(90)": 8.2383744,
+            "p(95)": 12.073658999999997
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 4256,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "data_received": {
+            "count": 123995583,
+            "rate": 374126.794801782
+        },
+        "http_req_connecting": {
+            "avg": 0.0043858632518797,
+            "min": 0,
+            "med": 0,
+            "max": 0.454564,
+            "p(90)": 0,
+            "p(95)": 0
+        },
+        "http_req_receiving": {
+            "max": 6.3354,
+            "p(90)": 0.31464400000000003,
+            "p(95)": 0.37243275,
+            "avg": 0.19741052631578926,
+            "min": 0.085121,
+            "med": 0.1647795
+        },
+        "checks": {
+            "passes": 10134,
+            "fails": 0,
+            "value": 1
+        },
+        "http_req_duration{expected_response:true}": {
+            "p(95)": 85.51406975,
+            "avg": 17.2116936137218,
+            "min": 2.477907,
+            "med": 7.6969355,
+            "max": 308.491177,
+            "p(90)": 84.0624365
+        },
+        "http_req_blocked": {
+            "avg": 0.01994228594924812,
+            "min": 0.006448,
+            "med": 0.0128075,
+            "max": 0.757055,
+            "p(90)": 0.016797,
+            "p(95)": 0.0189855
+        },
+        "http_req_duration": {
+            "p(95)": 85.51406975,
+            "avg": 17.2116936137218,
+            "min": 2.477907,
+            "med": 7.6969355,
+            "max": 308.491177,
+            "p(90)": 84.0624365,
+            "thresholds": {
+                "avg<300": false
+            }
+        },
+        "book_creation_duration": {
+            "max": 308.491177,
+            "p(90)": 86.5049733,
+            "p(95)": 87.9494364,
+            "avg": 53.83766109020621,
+            "min": 3.791893,
+            "med": 81.745566
+        },
+        "http_req_waiting": {
+            "p(95)": 85.29689775,
+            "avg": 16.963124783364655,
+            "min": 2.330435,
+            "med": 7.413333,
+            "max": 308.140652,
+            "p(90)": 83.84638050000001
+        },
+        "iteration_duration": {
+            "med": 2049.303343,
+            "max": 3088.9967,
+            "p(90)": 2833.4802836,
+            "p(95)": 2928.6776263,
+            "avg": 2040.810885819488,
+            "min": 1010.920971
+        },
+        "http_req_tls_handshaking": {
+            "p(95)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0,
+            "p(90)": 0
+        },
+        "data_sent": {
+            "count": 470084,
+            "rate": 1418.365202634685
+        },
+        "vus_max": {
+            "value": 50,
+            "min": 50,
+            "max": 50
+        },
+        "errors": {
+            "passes": 0,
+            "fails": 4055,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "http_req_sending": {
+            "med": 0.0443845,
+            "max": 2.109398,
+            "p(90)": 0.0730335,
+            "p(95)": 0.08740075,
+            "avg": 0.05115830404135335,
+            "min": 0.017647
+        },
+        "book_read_duration": {
+            "max": 99.970514,
+            "p(90)": 9.975596600000001,
+            "p(95)": 12.138142199999992,
+            "avg": 7.495679301985034,
+            "min": 2.477907,
+            "med": 7.599264
+        },
+        "http_reqs": {
+            "rate": 12.841454511136774,
+            "count": 4256
+        },
+        "iterations": {
+            "rate": 12.234985442354233,
+            "count": 4055
+        }
+    }
+}

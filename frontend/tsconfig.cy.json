@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/cy",
+    "types": ["cypress", "node"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "skipLibCheck": true,
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "noEmit": false
+  },
+  "files": [
+    "cypress/support/component.ts"
+  ],
+  "include": [
+    "src/**/*.cy.ts",
+    "cypress/support/**/*.ts"
+  ],
+  "exclude": [
+    "cypress/e2e/**/*",
+    "src/**/*.spec.ts"
+  ]
+}

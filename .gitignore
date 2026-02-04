@@ -1,0 +1,20 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Angular build
+frontend/dist/
+frontend/out-tsc/
+
+# Backend build (if any)
+backend/dist/
+
+# Environment files
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+

@@ -1,0 +1,78 @@
+version: '3.9'  # modern compose, no warnings about version
+
+services:
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: books_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /var/log/nginx:/var/log/nginx
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - books-network
+    restart: unless-stopped
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: books_backend
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=expressdb
+      - DB_USER=postgres
+      - DB_PASSWORD=Qwerty@123
+      - PORT=8080
+      - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://144.91.65.196:4318/v1/traces  # Contabo Jaeger
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - books-network
+    restart: unless-stopped
+    volumes:
+      - /var/log/books-api:/var/log/books-api
+
+  # Frontend Angular App
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: books_frontend
+    networks:
+      - books-network
+    restart: unless-stopped
+
+  # PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: books_postgres
+    environment:
+      POSTGRES_DB: expressdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Qwerty@123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d expressdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - books-network
+    restart: unless-stopped
+
+networks:
+  books-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
