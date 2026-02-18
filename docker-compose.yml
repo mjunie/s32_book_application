@@ -1,4 +1,4 @@
-version: '3.9'  # modern compose, no warnings about version
+version: '3.8'
 
 services:
   # Nginx Reverse Proxy
@@ -13,6 +13,7 @@ services:
     depends_on:
       - backend
       - frontend
+      - jaeger
     networks:
       - books-network
     restart: unless-stopped
@@ -30,10 +31,12 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=Qwerty@123
       - PORT=8080
-      - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://144.91.65.196:4318/v1/traces  # Contabo Jaeger
+      - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://jaeger:4318/v1/traces
     depends_on:
       postgres:
         condition: service_healthy
+      jaeger:
+        condition: service_started
     networks:
       - books-network
     restart: unless-stopped
@@ -46,6 +49,21 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: books_frontend
+    networks:
+      - books-network
+    restart: unless-stopped
+
+  # Jaeger (with exposed ports)
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: books_jaeger
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - LOG_LEVEL=info
+    ports:
+      - "16686:16686"  # Jaeger UI
+      - "4318:4318"    # OTLP HTTP receiver
+      - "4317:4317"    # OTLP gRPC receiver (optional)
     networks:
       - books-network
     restart: unless-stopped
