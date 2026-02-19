@@ -5,7 +5,8 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import jwksClient from 'jwks-rsa';
 
-const KEYCLOAK_URL = 'http://144.91.65.196:8080';
+//const KEYCLOAK_URL = 'http://144.91.65.196:8080';
+const KEYCLOAK_URL = 'https://book.s32.horizonoes.com/auth';
 const REALM = 'books-realm'; // ← Replace with your actual realm name
 
 /**

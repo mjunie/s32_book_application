@@ -1,7 +1,7 @@
 import Keycloak from 'keycloak-js';
 
 export const keycloak = new Keycloak({
-  url: 'http://144.91.65.196:8080',
+  url: 'https://book.s32.horizonoes.com/auth',
   realm: 'books-realm',
   clientId: 'books-frontend',
 });
